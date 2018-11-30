@@ -8,8 +8,9 @@ var bodyParser = require("body-parser");
 var models = require("./models");
 
 
+
 var PORT = process.env.PORT || 3000;
-var env = require('dotenv').load();
+var env = require("dotenv").load();
 
 // Middleware
 //For BodyParser
@@ -21,7 +22,7 @@ app.use(express.static("public"));
 
 // For Passport
 app.use(session({
-  secret: 'keyboard cat',
+  secret: "keyboard cat",
   resave: true,
   saveUninitialized: true
 })); // session secret
@@ -39,9 +40,11 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes.js")(app, passport);
+require("./routes/htmlRoutes.js")(app);
+//require("./routes/authRoutes.js")(app);
 require("./config/passport.js")(passport, models.user);
+
 
 var syncOptions = { force: false };
 
