@@ -78,11 +78,34 @@ app.get("/api/signin",function(req, res){
   res.render("signin")
 });
 
-app.post("/api/signup", passport.authenticate("local-signup", {
-  successRedirect: "/",
-  failureRedirect: "/signup"
-}
-));
+// app.post("/api/signup", passport.authenticate("local-signup", {
+//   successRedirect: "/",
+//   failureRedirect: "/signup"
+// }
+// ));
+
+app.post("/api/singup", function(req, res) {
+console.log(res);
+  // create takes an argument of an object describing the item we want to
+  // insert into our table. In this case we just we pass in an object with a text
+  // and complete property (req.body)
+models.user.create({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    username:req.body.username,
+    password:req.body.password
+  }).then(function(modelsuser) {
+    // We have access to the new todo as an argument inside of the callback function
+    res.json(modelsuser);
+  })
+    .catch(function(err) {
+    // Whenever a validation or flag fails, an error is thrown
+    // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+      res.json(err);
+    });
+});
+
+
 
 app.get("/dashboard", isLoggedIn, function(req, res){
   res.render("dashboard");
