@@ -1,33 +1,157 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">My Movie List</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <!-- <a class="nav-link" href="#">Sign up</a> -->
+                      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sign Up</button>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                              <form id="signup" name="signup" method="post">
+                            <label for="email">Email Address</label>
+                            <input class="text" name="email" type="email" />
+                            <br><label for="firstname">Firstname</label>
+                            <input name="firstname" type="text" />
+                            <br><label for="lastname">Lastname</label>
+                            <input name="lastname" type="text" />
+                            <br><label for="password">Password</label>
+                            <input name="password" type="password" />
+                            <br><input id="signupbtn" class="btn" type="submit" value="Sign Up" />
+                        </form>  
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Sign in</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal2" role="dialog">
+                          <div class="modal-dialog">
+                          
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                
+                              </div>
+                              <div class="modal-body">
+                                <form id="signin" name="signin" method="post" action="signin">
+                              <label for="email">Email Address</label>
+                              <input class="text" name="email" type="text" />
+                              <br><label for="password">Password</label>
+                              <input name="password" type="password" />
+                              <br><input class="btn" type="submit" value="Sign In" />
+                          </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
+              <br>
+        
+              <div class="jumbotron jumbotron-fluid bg-secondary">
+                <div class="container">
+                  <h1 class="display-4">Current Top 10 Movies</h1>
+                  <p class="lead">Pictures of the most popular movies on the currently playing</p>
+                </div>
+              </div>
+        
+              <div class="card-deck">
+                <div class="card bg-primary">
+                  <div class="card-body text-center">
+                      <p class="card-text">Upcoming Trailer</p>
+                      <div class="embed-responsive embed-responsive-1by1">
+                          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ARyZpzqD6lA?start=42" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div> 
+                  </div>
+                </div>
+                <div class="card bg-warning">
+                  <div class="card-body text-center">
+                    <p class="card-text">Showtimes</p>
+                      <form id="addzipcode" class="button-size">
+                        <textarea type="text" name="zipcode"></textarea>
+                        <button type="submit">Enter Zipcode</button>
+                      </form>
+                  </div>
+                </div>
+                <div class="card bg-success">
+                  <div class="card-body text-center">
+                    <p class="card-text">Movie News</p>
+                      
+                  </div>
+                </div>
+                <div class="card bg-danger">
+                  <div class="card-body text-center">
+                    <p class="card-text">My list!</p>
+        
+                      <!-- <ul>
+                        {{#each movies}}
+                          <li>
+                            <p>
+                              {{this.id}}. {{this.movie}}
+        
+                              <button data-movieid="{{this.id}}" class="delmovie">Delete</button>
+                            </p>
+                          </li>
+                        {{/each}}
+                      </ul> -->
+        
+                      <h2>Add a Movie to Watch</h2>
+                      <form id="addmovie" class="button-size">
+                        <textarea type="text" name="movie"></textarea>
+                        <button type="submit">Save Movie!</button>
+                      </form>
+        
+                      <h2>Update a Movie</h2>
+                      <form id="updatemovie" class="button-size">
+                        <input type="text" name="id" placeholder="id">
+                        <textarea type="text" name="movie" placeholder="what do you want to update this movie title to?"></textarea>
+                        <button type="submit">Update Movie!</button>
+                      </form>
+                  </div>
+                </div> 
+              </div>
+        
+              <div>
+                 <br>
+                  <div class="card bg-secondary">
+                      <div class="card-body text-center">
+                        <p class="card-text">My list!</p>
+                      </div>
+                    </div>                
+              </div>
+              <script src = "js/movies.js"></script>

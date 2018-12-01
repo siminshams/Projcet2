@@ -26,20 +26,20 @@ module.exports = function(app,passport) {
 
 // };
 
-app.get('/', function(req, res) { 
-  res.send('Welcome to Passport with Sequelize');
-});
+// app.get('/', function(req, res) { 
+//   res.send('Welcome to Passport with Sequelize');
+// });
 
-app.get("/signup",function(req, res){
-  res.render("signup")
-});
+// app.post("/api/signup",function(req, res){
+//   console.log(req.body);
+// });
 
-app.get("/signin",function(req, res){
+app.get("/api/signin",function(req, res){
   res.render("signin")
 });
 
-app.post("/signup", passport.authenticate("local-signup", {
-  successRedirect: "/dashboard",
+app.post("/api/signup", passport.authenticate("local-signup", {
+  successRedirect: "/",
   failureRedirect: "/signup"
 }
 ));
