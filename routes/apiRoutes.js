@@ -26,6 +26,11 @@ module.exports = function(app,passport) {
 
 // };
 
+<<<<<<< HEAD
+// app.get('/', function(req, res) { 
+//   res.send('Welcome to Passport with Sequelize');
+// });
+=======
 
  // GET route for getting all of the todos
  app.get("/api/list", function(req, res) {
@@ -95,17 +100,18 @@ models.List.update({
 app.get('/', function(req, res) { 
   res.send('Welcome to Passport with Sequelize');
 });
+>>>>>>> 9adadde8aae53b68215ae6534552c7c3f68ed7d3
 
-app.get("/signup",function(req, res){
-  res.render("signup")
-});
+// app.post("/api/signup",function(req, res){
+//   console.log(req.body);
+// });
 
-app.get("/signin",function(req, res){
+app.get("/api/signin",function(req, res){
   res.render("signin")
 });
 
-app.post("/signup", passport.authenticate("local-signup", {
-  successRedirect: "/dashboard",
+app.post("/api/signup", passport.authenticate("local-signup", {
+  successRedirect: "/",
   failureRedirect: "/signup"
 }
 ));

@@ -13,11 +13,8 @@ var PORT = process.env.PORT || 3000;
 var env = require("dotenv").load();
 
 // Middleware
-//For BodyParser
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(express.static("public"));
 
 // For Passport
@@ -42,7 +39,6 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes.js")(app, passport);
 require("./routes/htmlRoutes.js")(app);
-//require("./routes/authRoutes.js")(app);
 require("./config/passport.js")(passport, models.user);
 
 
