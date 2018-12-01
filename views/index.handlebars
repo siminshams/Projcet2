@@ -6,12 +6,10 @@
               
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    
                     <li class="nav-item">
                       <!-- <a class="nav-link" href="#">Sign up</a> -->
-                      <button type="button" class="btn btn-success btn" data-toggle="modal" data-target="#myModal">Sign Up</button>
+                      <button type="button" class="btn btn-outline-success btn" data-toggle="modal" data-target="#myModal">Sign Up</button>
 
                       <!-- Modal -->
                       <div class="modal fade" id="myModal" role="dialog">
@@ -44,7 +42,7 @@
                       </div>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-success btn" data-toggle="modal" data-target="#myModal2">Sign in</button>
+                        <button type="button" class="btn btn-outline-success btn" data-toggle="modal" data-target="#myModal2">Sign in</button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="myModal2" role="dialog">
@@ -112,32 +110,24 @@
                 </div>
                 <div class="col-sm-6 card bg-warning">
                   <div class="card-body text-center">
-                    <p class="card-text">My list!</p>
-        
-                      <ul>
-                        {{#each movies}}
-                          <li>
-                            <p>
-                              {{this.id}}. {{this.movie}}
-        
-                              <button data-movieid="{{this.id}}" class="delmovie">Delete</button>
-                            </p>
-                          </li>
-                        {{/each}}
-                      </ul> 
-        
-                      <h2>Add a Movie to Watch</h2>
-                      <form id="addmovie" class="button-size">
-                        <textarea type="text" name="movie"></textarea>
-                        <button type="submit">Save Movie!</button>
+                    <ul class="list-group todo-list">
+                    <li class="list-group-item new-item">
+                      <form id="todo-form">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-10">
+                              <input class="new-item form-control" placeholder="Add a movie" type="text" />
+                            </div>
+                            <div class="col-2">
+                              <button type="submit" class="btn-sm btn-success">Add Movie</button>
+                            </div>
+                          </div>
+                        </div>
                       </form>
-        
-                      <h2>Update a Movie</h2>
-                      <form id="updatemovie" class="button-size">
-                        <input type="text" name="id" placeholder="id">
-                        <textarea type="text" name="movie" placeholder="what do you want to update this movie title to?"></textarea>
-                        <button type="submit">Update Movie!</button>
-                      </form>
+                    </li>
+                    <span class="list-container">
+                    </span>
+                  </ul>
                       
                   </div>
                 </div>
@@ -149,11 +139,8 @@
                 </div> --}}
                 <div class="col-sm-3  card bg-danger">
                   <div class="card-body text-center">
-                    <p class="card-text">Showtimes</p>
-                      <form id="addzipcode" class="button-size">
-                        <textarea type="text" name="zipcode"></textarea>
-                        <button type="submit">Enter Zipcode</button>
-                      </form>
+                   
+                      <p class="card-text">Movie News</p>
                       <ul>
                         {{#each movies}}
                           
@@ -167,7 +154,7 @@
                  <br>
                   <div class="card bg-secondary">
                       <div class="card-body text-center">
-                        <p class="card-text">Movie News</p>
+                        <p class="card-text"></p>
                       </div>
                     </div> 
                
