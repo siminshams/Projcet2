@@ -3,39 +3,12 @@ var passport = require("passport");
 
 
 module.exports = function(app,passport) {
-//   // Get all examples
-//   app.get("/api/examples", function(req, res) {
-//     db.Example.findAll({}).then(function(dbExamples) {
-//       res.json(dbExamples);
-//     });
-//   });
 
-//   // Create a new example
-//   app.post("/api/examples", function(req, res) {
-//     db.Example.create(req.body).then(function(dbExample) {
-//       res.json(dbExample);
-//     });
-//   });
-
-//   // Delete an example by id
-//   app.delete("/api/examples/:id", function(req, res) {
-//     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-//       res.json(dbExample);
-//     });
-//   });
-
-// };
-
-<<<<<<< HEAD
-// app.get('/', function(req, res) { 
-//   res.send('Welcome to Passport with Sequelize');
-// });
-=======
 
  // GET route for getting all of the todos
  app.get("/api/list", function(req, res) {
   // findAll returns all entries for a table when used with no options
-models.List.findAll({}).then(function(modelsList) {
+     models.List.findAll({}).then(function(modelsList) {
     // We have access to the todos as an argument inside of the callback function
     res.json(modelsList);
   });
@@ -96,11 +69,6 @@ models.List.update({
     });
 });
 
-
-app.get('/', function(req, res) { 
-  res.send('Welcome to Passport with Sequelize');
-});
->>>>>>> 9adadde8aae53b68215ae6534552c7c3f68ed7d3
 
 // app.post("/api/signup",function(req, res){
 //   console.log(req.body);
