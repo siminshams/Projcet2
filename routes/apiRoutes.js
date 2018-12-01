@@ -8,7 +8,7 @@ module.exports = function(app,passport) {
  // GET route for getting all of the todos
  app.get("/api/list", function(req, res) {
   // findAll returns all entries for a table when used with no options
-models.List.findAll({}).then(function(modelsList) {
+     models.List.findAll({}).then(function(modelsList) {
     // We have access to the todos as an argument inside of the callback function
     res.json(modelsList);
   });
