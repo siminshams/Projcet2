@@ -1,3 +1,32 @@
-.list-group-item {
-  line-height: 2.5;
+body {
+    background-color: black;
 }
+
+h2{
+    margin: 20px;
+    padding: 10px;
+    color:white;
+}
+
+.btn {
+    margin: 2px;
+}
+.list-list {
+    margin: 0 auto;
+    margin-top: 75px;
+  }
+  
+  input.new-item:focus {
+    outline: none;
+  }
+  
+  .list-group-item > button.delete,
+  .list-group-item > button.complete {
+    float: right;
+    height: 25px;
+    margin-left: 5px;
+  }
+  
+  .edit {
+    width: 100%;
+  }
