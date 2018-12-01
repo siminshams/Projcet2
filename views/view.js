@@ -12,25 +12,25 @@ $(document).ready(function() {
     $(document).on("submit", "#list-form", insertList);
   
     // Our initial todos array
-    var list = [];
+    var lists = [];
   
     // Getting todos from database when page loads
-    getList();
+    getLists();
   
     // This function resets the todos displayed with new todos from the database
     function initializeRows() {
       $listContainer.empty();
       var rowsToAdd = [];
-      for (var i = 0; i < list.length; i++) {
-        rowsToAdd.push(createNewRow(list[i]));
+      for (var i = 0; i < lists.length; i++) {
+        rowsToAdd.push(createNewRow(lists[i]));
       }
       $listContainer.prepend(rowsToAdd);
     }
   
     // This function grabs todos from the database and updates the view
-    function getList() {
-      $.get("/api/list", function(data) {
-        list = data;
+    function getLists() {
+      $.get("/api/lists", function(data) {
+        lists = data;
         initializeRows();
       });
     }
@@ -41,12 +41,12 @@ $(document).ready(function() {
       var id = $(this).data("id");
       $.ajax({
         method: "DELETE",
-        url: "/api/list/" + id
-      }).then(getList);
+        url: "/api/lists/" + id
+      }).then(getLists);
     }
   
     // This function handles showing the input box for a user to edit a todo
-    function editTodo() {
+    function editList() {
       var currentList = $(this).data("list");
       $(this).children().hide();
       $(this).children("input.edit").val(currentList.text);
@@ -77,9 +77,9 @@ $(document).ready(function() {
     function updateList(list) {
       $.ajax({
         method: "PUT",
-        url: "/api/list",
+        url: "/api/lists",
         data: list
-      }).then(getList);
+      }).then(getLists);
     }
   
     // This function is called whenever a todo item is in edit mode and loses focus
@@ -126,7 +126,7 @@ $(document).ready(function() {
         complete: false
       };
   
-      $.post("/api/list", list, getList);
+      $.post("/api/lists", list, getLists);
       $newItemInput.val("");
     }
   });
