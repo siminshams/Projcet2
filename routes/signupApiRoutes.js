@@ -8,7 +8,7 @@ app.get("/api/signin",function(req, res){
 });
 
 app.post("/api/signup", passport.authenticate("local-signup", {
-  successRedirect: "/dashboard",
+  successRedirect: "/api/signin",
   failureRedirect: "/api/signup"
 }
 ));
