@@ -4,7 +4,6 @@ var app = express();
 var exphbs = require("express-handlebars");
 var passport = require("passport");
 var session = require("express-session");
-var bodyParser = require("body-parser");
 var models = require("./models");
 
 
@@ -37,8 +36,9 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes.js")(app, passport);
+require("./routes/listApiRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
+require("./routes/signupApiRoutes.js")(app, passport);
 require("./config/passport.js")(passport, models.user);
 
 
