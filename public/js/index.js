@@ -12,7 +12,7 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "signup",
+      url: "api/signup",
       data: JSON.stringify(example)
     });
   },

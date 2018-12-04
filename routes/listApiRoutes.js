@@ -69,42 +69,6 @@ models.List.update({
     });
 });
 
-
-// app.post("/api/signup",function(req, res){
-//   console.log(req.body);
-// });
-
-app.get("/api/signin",function(req, res){
-  res.render("signin")
-});
-
-app.post("/api/signup", passport.authenticate("local-signup", {
-  successRedirect: "/",
-  failureRedirect: "/signup"
-}
-));
-
-app.get("/dashboard", isLoggedIn, function(req, res){
-  res.render("dashboard");
-});
-
-app.get("/logout", function(req, res){
-  req.session.destroy(function(err){
-    res.redirect("/");
-  });
-});
-
-function isLoggedIn(req, res, next) { 
-  if (req.isAuthenticated())     
-      return next();         
-  res.redirect("/signin"); 
-}
-app.post("/signin", passport.authenticate("local-signin", {
-  successRedirect: "/dashboard",
-  failureRedirect: "/signin"
-}
-));
-
 };
 
 

@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) { 
-  var User = sequelize.define('User', {
+  var User = sequelize.define('user', {
       id: {
           autoIncrement: true,
           primaryKey: true,
@@ -14,9 +14,6 @@ module.exports = function(sequelize, DataTypes) {
           notEmpty: true
       },
       username: {
-          type: DataTypes.TEXT
-      },
-      about: {
           type: DataTypes.TEXT
       },
       email: {
