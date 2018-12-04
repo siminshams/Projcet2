@@ -1,33 +1,33 @@
 body {
-    background-color: black;
+  background-color: black;
 }
 
-h2{
-    margin: 20px;
-    padding: 10px;
-    color:white;
+h2 {
+  margin: 20px;
+  padding: 10px;
+  color: white;
 }
 
 .btn {
-    margin: 2px;
+  margin: 2px;
 }
 
 .list-list {
-    margin: 0 auto;
-    margin-top: 75px;
-  }
-  
-  input.new-item:focus {
-    outline: none;
-  }
-  
-  .list-group-item > button.delete,
-  .list-group-item > button.complete {
-    float: right;
-    height: 25px;
-    margin-left: 5px;
-  }
-  
-  .edit {
-    width: 100%;
-  }
+  margin: 0 auto;
+  margin-top: 75px;
+}
+
+input.new-item:focus {
+  outline: none;
+}
+
+.list-group-item > button.delete,
+.list-group-item > button.complete {
+  float: right;
+  height: 25px;
+  margin-left: 5px;
+}
+
+.edit {
+  width: 100%;
+}
