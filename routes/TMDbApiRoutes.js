@@ -8,8 +8,7 @@ module.exports = function(app) {
   var baseUrl = "https://api.themoviedb.org/3/";
   var baseParameters = "?language=en-US&include_video=false&include_adult=false&api_key=" + api_key;
   var TMDbUrl = function(query, additionalParameters) {
-    var result = baseUrl + query + baseParameters + additionalParameters;
-    return result;
+    return baseUrl + query + baseParameters + additionalParameters;
   }
 
   app.get("/", function(req, res) {
