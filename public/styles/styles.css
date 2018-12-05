@@ -8,6 +8,10 @@ h2 {
   color: white;
 }
 
+.authorization {
+  background-color: red;
+}
+
 .btn {
   margin: 2px;
 }
