@@ -31,3 +31,11 @@ input.new-item:focus {
 .edit {
   width: 100%;
 }
+
+.card {
+  background-color: black;
+}
+
+img{
+  margin: 27px;
+}
