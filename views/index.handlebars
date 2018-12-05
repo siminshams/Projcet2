@@ -80,11 +80,34 @@
 </nav>
 <br>
 
-<div class="jumbotron jumbotron-fluid bg-secondary">
-  <div class="container">
-    <h1 class="display-4">Popular Current Movies</h1>
-
-    <div id="demo" class="carousel slide" data-ride="carousel">
+<div class="container-fluid card-group">
+  <div class= "row">
+  <div class="col-sm-9 card bg-warning">
+    <div class="card-body text-center">
+      <ul class="list-group list-list">
+        <li class="list-group-item new-item">
+          <form id="list-form">
+            <div class="container">
+              <div class="row">
+                <div class="col-10">
+                  <input class="new-item form-control" placeholder="Add a movie" type="text" />
+                </div>
+                <div class="col-2">
+                  <button type="submit" class="btn-sm btn-success">Add Movie</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </li>
+        <span class="list-container">
+        </span>
+      </ul>   
+    </div>
+  </div>
+  
+  <div class="col-sm-3">
+  <div class="card bg-secondary">
+   <div id="demo" class="carousel slide" data-ride="carousel">
 
       <!-- The slideshow -->
       <div class="carousel-inner">
@@ -109,11 +132,20 @@
 
     </div>
 
-  </div>
-</div>
 
-<div class="card-deck">
-  <div class="col-sm-3  card bg-primary">
+</div>
+   
+   <div class="card bg-danger">
+    <div class="card-body text-center">  
+      <p class="card-text">Movie News</p>
+      <ul>
+        {{#each movies}}
+          
+        {{/each}}
+      </ul> 
+    </div>
+  </div> 
+  <div class="card bg-primary">
     <div class="card-body text-center">
       <p class="card-text">Upcoming Trailer</p>
       <ul>
@@ -124,40 +156,11 @@
       <div class="embed-responsive embed-responsive-1by1">
         {{!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ARyZpzqD6lA?start=42" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
       </div> 
+      </div>
     </div>
   </div>
-  <div class="col-sm-6 card bg-warning">
-    <div class="card-body text-center">
-      <ul class="list-group todo-list">
-        <li class="list-group-item new-item">
-          <form id="todo-form">
-            <div class="container">
-              <div class="row">
-                <div class="col-10">
-                  <input class="new-item form-control" placeholder="Add a movie" type="text" />
-                </div>
-                <div class="col-2">
-                  <button type="submit" class="btn-sm btn-success">Add Movie</button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </li>
-        <span class="list-container">
-        </span>
-      </ul>   
-    </div>
-  </div>
-  <div class="col-sm-3 card bg-danger">
-    <div class="card-body text-center">  
-      <p class="card-text">Movie News</p>
-      <ul>
-        {{#each movies}}
-          
-        {{/each}}
-      </ul> 
-    </div>
-  </div> 
+ 
+</div>
 </div>
 
 <div>
