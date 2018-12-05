@@ -22,7 +22,7 @@ module.exports = function(app) {
       var popularMovies = response.results;
       var posters = [];
       popularMovies.forEach(function(item, index) {
-        var posterUrl = "https://image.tmdb.org/t/p/w92" + item.poster_path;
+        var posterUrl = "https://image.tmdb.org/t/p/w200" + item.poster_path;
         posters.push(posterUrl);
       });
       res.render("index", {
