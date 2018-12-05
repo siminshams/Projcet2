@@ -1,9 +1,9 @@
 $(document).ready(function() {
-  // Getting a reference to the input field where user adds a new todo
+
   var $newItemInput = $("input.new-item");
-  // Our new todos will go inside the todoContainer
+
   var $listContainer = $(".list-container");
-  // Adding event listeners for deleting, editing, and adding todos
+
   $(document).on("click", "button.delete", deleteList);
   $(document).on("click", "button.complete", toggleComplete);
   $(document).on("click", ".list-item", editList);
@@ -11,13 +11,13 @@ $(document).ready(function() {
   $(document).on("blur", ".list-item", cancelEdit);
   $(document).on("submit", "#list-form", insertList);
 
-  // Our initial todos array
+  
   var lists = [];
 
-  // Getting todos from database when page loads
+  
   getLists();
 
-  // This function resets the todos displayed with new todos from the database
+  
   function initializeRows() {
     $listContainer.empty();
     var rowsToAdd = [];
@@ -27,7 +27,7 @@ $(document).ready(function() {
     $listContainer.prepend(rowsToAdd);
   }
 
-  // This function grabs todos from the database and updates the view
+ 
   function getLists() {
     $.get("/api/lists", function(data) {
       lists = data;
@@ -35,7 +35,7 @@ $(document).ready(function() {
     });
   }
 
-  // This function deletes a todo when the user clicks the delete button
+  
   function deleteList(event) {
     event.stopPropagation();
     var id = $(this).data("id");
@@ -45,7 +45,7 @@ $(document).ready(function() {
     }).then(getLists);
   }
 
-  // This function handles showing the input box for a user to edit a todo
+
   function editList() {
     var currentList = $(this).data("list");
     $(this).children().hide();
@@ -54,16 +54,15 @@ $(document).ready(function() {
     $(this).children("input.edit").focus();
   }
 
-  // Toggles complete status
+
   function toggleComplete(event) {
     event.stopPropagation();
-    var todo = $(this).parent().data("list");
+    var list = $(this).parent().data("list");
     list.complete = !list.complete;
     updateList(list);
   }
 
-  // This function starts updating a todo in the database if a user hits the "Enter Key"
-  // While in edit mode
+
   function finishEdit(event) {
     var updatedList = $(this).data("list");
     if (event.which === 13) {
@@ -73,7 +72,7 @@ $(document).ready(function() {
     }
   }
 
-  // This function updates a todo in our database
+  
   function updateList(list) {
     $.ajax({
       method: "PUT",
@@ -82,8 +81,7 @@ $(document).ready(function() {
     }).then(getLists);
   }
 
-  // This function is called whenever a todo item is in edit mode and loses focus
-  // This cancels any edits being made
+
   function cancelEdit() {
     var currentList = $(this).data("list");
     if (currentList) {
@@ -94,11 +92,11 @@ $(document).ready(function() {
     }
   }
 
-  // This function constructs a todo-item row
+
   function createNewRow(list) {
     var $newInputRow = $(
       [
-        "<li class='list-group-item todo-item'>",
+        "<li class='list-group-item list-item'>",
         "<span>",
         list.text,
         "</span>",
@@ -118,9 +116,10 @@ $(document).ready(function() {
     return $newInputRow;
   }
 
-  // This function inserts a new todo into our database and then updates the view
+  
   function insertList(event) {
     event.preventDefault();
+    console.log('insertList');
     var list = {
       text: $newItemInput.val().trim(),
       complete: false
