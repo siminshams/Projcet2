@@ -9,7 +9,14 @@ h2 {
 }
 
 .authorization {
-  background-color: red;
+  background-color: white;
+  margin: auto;
+  width: 60%;
+  margin-top: 10%;
+  border: 3px ridge blue;
+  border-radius: 12px;
+  padding: 3%;
+  text-align: -webkit-center;
 }
 
 .btn {
