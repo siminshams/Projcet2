@@ -11,6 +11,7 @@ $(document).ready(function() {
   $(document).on("blur", ".list-item", cancelEdit);
   $(document).on("submit", "#list-form", insertList);
 
+  $(document).on("click", ".search", searchPartial);
   
   var lists = [];
 
@@ -127,5 +128,10 @@ $(document).ready(function() {
 
     $.post("/api/lists", list, getLists);
     $newItemInput.val("");
+  }
+
+  function searchPartial(event) {
+    event.preventDefault();
+    // switch partial
   }
 });
