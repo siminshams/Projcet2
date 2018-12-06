@@ -47,6 +47,11 @@ input.new-item:focus {
   background-color: black;
 }
 
+.carousel {
+  height: 354px;
+  text-align: center;
+}
+
 img{
   margin: 27px;
 }
