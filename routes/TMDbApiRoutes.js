@@ -38,7 +38,9 @@ module.exports = function(app) {
       if (error) { return console.log(error); }
       var response = JSON.parse(body);
       var searchResults = response.results;
-      res.json(searchResults);
+      res.render("partials/search", {
+        searchResults: searchResults
+      });
     });
   });
 
