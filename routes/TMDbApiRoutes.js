@@ -2,6 +2,7 @@ var request = require("request");
 require("dotenv").config();
 var env = require("dotenv").load();
 var keys = require("../config/keys");
+var news_api_key = keys.NEWS.api_key;
 
 // function simplifies URL for calls to The Movie Database API
 var TMDbUrl = function(query, additionalParameters) {
@@ -15,21 +16,46 @@ module.exports = function(app, passport) {
 
   // popular current movies
   app.get("/", function(req, res) {
+          
     var url = TMDbUrl("discover/movie", "&page=1&sort_by=popularity.desc");
-    request(url, function(error, result, body) {
-      if (error) { return console.log(error); }
-      var response = JSON.parse(body);
-      var popularMovies = response.results;
-      var posters = [];
-      popularMovies.forEach(function(item, index) {
-        var posterUrl = "https://image.tmdb.org/t/p/w200" + item.poster_path;
-        posters.push(posterUrl);
+     request(url, function(error, result, body) {
+        if (error) { 
+          return console.log(error); 
+        }
+        var response = JSON.parse(body);
+        var popularMovies = response.results;
+        var posters = [];
+        
+        popularMovies.forEach(function(item, index) {
+          var posterUrl = "https://image.tmdb.org/t/p/w200" + item.poster_path;
+          posters.push(posterUrl);
+        });    
+        
+        // REQUEST CALL FOR NEWS API
+        var newsurl = "https://newsapi.org/v2/everything?q=movie&from=2018&to=2018&sortBy=relevancy&language=en&apiKey=" + news_api_key;
+
+        request(newsurl, {json:true},function (error, response, body) {
+         //console.log(body);
+         if (error) {
+              return console.log(error);
+         }
+             //res.json(body);
+             res.render("index", {
+              newsResults: body.articles,
+              posters: posters,
+              authenticated: req.isAuthenticated()
+            })
+         });
+
       });
-      res.render("index", {
-        posters: posters,
-        authenticated: req.isAuthenticated()
-      });
-    });
+
+      
+    // console.log('NEWS', getNews());
+
+  // Promise.all([getNews(), getPosters()]).then(function(results){
+  //   console.log("PROMISE RESULTS", results)
+      
+  //   })
   });
 
   // search movies
