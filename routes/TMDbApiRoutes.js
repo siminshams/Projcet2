@@ -38,7 +38,7 @@ module.exports = function(app) {
       if (error) { return console.log(error); }
       var response = JSON.parse(body);
       var searchResults = response.results;
-      res.render("partials/search", {
+      res.render("index", {
         searchResults: searchResults
       });
     });
