@@ -30,8 +30,12 @@
   <div class= "row">
   <div class="col-sm-9 scroll card bg-warning">
     <div class="card-body text-center">
+
+      {{#unless searchResults}}
       {{> default}}
+      {{else}}
       {{> search}}
+      {{/unless}}
       
       {{!-- <ul class="list-group list-list">
         <li class="list-group-item new-item">
@@ -94,7 +98,7 @@
       </ul> 
     </div>
   </div> 
-  <div class="card bg-primary">
+  {{!-- <div class="card bg-primary">
     <div class="card-body text-center">
       <p class="card-text">Upcoming Trailer</p>
       <ul>
@@ -106,7 +110,7 @@
         {{!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ARyZpzqD6lA?start=42" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
       </div> 
       </div>
-    </div>
+    </div> --}}
   </div>
  
 </div>
