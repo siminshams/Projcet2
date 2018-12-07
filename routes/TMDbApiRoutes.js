@@ -40,7 +40,8 @@ module.exports = function(app, passport) {
       var response = JSON.parse(body);
       var searchResults = response.results;
       res.render("index", {
-        searchResults: searchResults
+        searchResults: searchResults,
+        authenticated: req.isAuthenticated()
       });
     });
   });
