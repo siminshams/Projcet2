@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">My Movie List</a>
+  <a class="navbar-brand" href="/">My Movie List</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -15,7 +15,7 @@
       </li>
       {{else}}
       <li class="nav-item">
-        <button type="button" class="btn btn-outline-success btn" onclick="location.href='/signout'">Sign Out</button>
+        <button type="button" class="btn btn-outline-success btn" onclick="location.href='/signout'">Sign Out {{email}}</button>
       </li>
       {{/unless}}
     </ul>
@@ -36,25 +36,7 @@
       {{else}}
       {{> search}}
       {{/unless}}
-      
-      {{!-- <ul class="list-group list-list">
-        <li class="list-group-item new-item">
-          <form id="list-form">
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <input class="new-item form-control" placeholder="Add a movie" type="text" />
-                </div>
-                <div class="col">
-                  <button type="submit" class="btn-sm btn-success">Add Movie</button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </li>
-        <span class="list-container">
-        </span>
-      </ul>    --}}
+
     </div>
   </div>
   
