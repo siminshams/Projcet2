@@ -88,14 +88,17 @@
 
 </div>
    
-   <div class="card bg-danger">
+   <div class="card news scroll2 bg-danger">
     <div class="card-body text-center">  
-      <p class="card-text">Movie News</p>
+      {{!-- <p class="card-text">Movie News</p> --}}
+      <div class="innerCard">
+        <h4>Movie News</h4>
       <ul>
         {{#each newsResults}}
           {{> news}}
         {{/each}}
       </ul> 
+      </div>
     </div>
   </div> 
   {{!-- <div class="card bg-primary">

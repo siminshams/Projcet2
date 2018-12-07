@@ -61,7 +61,27 @@ img{
    height: 725px;
 }
 
-/* .searchPoster {
-  width: 200px;
-  height: 200px;
-} */
+.scroll2 {
+  overflow-y: auto;
+  height: 366px;
+}
+
+.innerCard{
+  border: 3px solid white;
+  background:white;
+  color: black;
+  border-radius: 5px;
+  padding:auto;
+  margin: auto;
+  text-align: center;
+ 
+  
+}
+
+h5{
+  margin-right:33px;
+}
+
+a{
+  color:black;
+}
