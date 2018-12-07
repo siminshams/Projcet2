@@ -58,12 +58,10 @@ img{
 
 .scroll {
    overflow-y: auto;
-   height: 725px;
 }
 
 .scroll2 {
   overflow-y: auto;
-  height: 366px;
 }
 
 .innerCard{
@@ -74,8 +72,6 @@ img{
   padding:auto;
   margin: auto;
   text-align: center;
- 
-  
 }
 
 h5{

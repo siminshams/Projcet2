@@ -18,36 +18,27 @@ module.exports = function(app, passport) {
   app.get("/", function(req, res) {
 
     var url = TMDbUrl("discover/movie", "&page=1&sort_by=popularity.desc");
-     request(url, function(error, result, body) {
-        if (error) { 
-          return console.log(error); 
-        }
-        var response = JSON.parse(body);
-        var popularMovies = response.results;
-        var posters = [];
-        
-        popularMovies.forEach(function(item, index) {
-          var posterUrl = "https://image.tmdb.org/t/p/w200" + item.poster_path;
-          posters.push(posterUrl);
-        });
-        
-        // REQUEST CALL FOR NEWS API
-        var newsurl = "https://newsapi.org/v2/everything?q=movie&from=2018&to=2018&sortBy=relevancy&language=en&apiKey=" + news_api_key;
-
-        request(newsurl, {json:true},function (error, response, body) {
-          if (error) {
-              return console.log(error);
-          }
-          var email = req.user ? req.user.email : "";
-          res.render("index", {
-            newsResults: body.articles,
-            posters: posters,
-            authenticated: req.isAuthenticated(),
-            email: email
-          });
-        });
-
+    request(url, function(error, result, body) {
+      if (error) { 
+        return console.log(error); 
+      }
+      var email = req.user ? req.user.email : "";
+      var response = JSON.parse(body);
+      var popularMovies = response.results;
+      var posters = [];
+      
+      popularMovies.forEach(function(item, index) {
+        var posterUrl = "https://image.tmdb.org/t/p/w200" + item.poster_path;
+        posters.push(posterUrl);
       });
+
+      res.render("index", {
+        posters: posters,
+        authenticated: req.isAuthenticated(),
+        email: email
+      });
+
+    });
 
       
     // console.log('NEWS', getNews());
@@ -65,11 +56,21 @@ module.exports = function(app, passport) {
       if (error) { return console.log(error); }
       var response = JSON.parse(body);
       var searchResults = response.results;
-      var email = req.user ? req.user.email : "";
-      res.render("index", {
-        searchResults: searchResults,
-        authenticated: req.isAuthenticated(),
-        email: email
+
+      // REQUEST CALL FOR NEWS API
+      var newsurl = "https://newsapi.org/v2/everything?q=movie&from=2018&to=2018&sortBy=relevancy&language=en&apiKey=" + news_api_key;
+
+      request(newsurl, {json:true},function (error, response, body) {
+        if (error) {
+            return console.log(error);
+        }
+        var email = req.user ? req.user.email : "";
+        res.render("index", {
+          searchResults: searchResults,
+          newsResults: body.articles,
+          authenticated: req.isAuthenticated(),
+          email: email
+        });
       });
     });
   });
