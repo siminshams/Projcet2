@@ -31,7 +31,7 @@ app.engine(
   exphbs({
     defaultLayout: "main",
     layoutsDir: __dirname + "/views/layouts/",
-    partialsDir: __dirname + "/views/partials"
+    partialsDir: __dirname + "/views/partials/"
   })
 );
 app.set("view engine", "handlebars");
@@ -39,7 +39,7 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/listApiRoutes.js")(app);
 require("./routes/passportApiRoutes.js")(app, passport);
-require("./routes/TMDbApiRoutes.js")(app);
+require("./routes/TMDbApiRoutes.js")(app, passport);
 require("./routes/newsApiRoutes.js")(app);
 require("./config/passport.js")(passport, models.user);
 require("./routes/htmlRoutes.js")(app);

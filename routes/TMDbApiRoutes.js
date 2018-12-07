@@ -11,7 +11,7 @@ var TMDbUrl = function(query, additionalParameters) {
   return baseUrl + query + baseParameters + additionalParameters;
 }
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
   // popular current movies
   app.get("/", function(req, res) {
@@ -26,7 +26,8 @@ module.exports = function(app) {
         posters.push(posterUrl);
       });
       res.render("index", {
-        posters: posters
+        posters: posters,
+        authenticated: req.isAuthenticated()
       });
     });
   });
@@ -38,7 +39,7 @@ module.exports = function(app) {
       if (error) { return console.log(error); }
       var response = JSON.parse(body);
       var searchResults = response.results;
-      res.render("partials/search", {
+      res.render("index", {
         searchResults: searchResults
       });
     });
