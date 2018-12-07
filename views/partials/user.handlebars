@@ -1,0 +1,13 @@
+<img class="userImage" src="https://image.tmdb.org/t/p/w92/{{poster_path}}">
+<h1>{{userFname}}</h1>
+
+{{#each movieList}}
+<p>
+        
+        <h5>{{title}}</h5>
+        <p>Release Date: {{release_date}}</p>
+        <p>Description: {{overview}}</p>
+        <button class="select-movie" data-id="{{id}}">SELECT</button>
+</p>
+<br>
+{{/each}}
