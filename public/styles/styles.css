@@ -65,13 +65,24 @@ img{
 }
 
 .innerCard{
-  border: 3px solid white;
-  background:white;
+  border: 3px solid rgb(252, 102, 102);
+  background:rgb(252, 102, 102);
   color: black;
   border-radius: 5px;
   padding:auto;
   margin: auto;
   text-align: center;
+  font-family: 'Special Elite', cursive;
+}
+.innerCard2{
+  border: 3px solid #ffe866;
+  background:#ffe866;
+  color: black;
+  border-radius: 5px;
+  padding:auto;
+  margin: auto;
+  text-align: center;
+  font-family: 'Special Elite', cursive;
 }
 
 h5{
@@ -80,4 +91,12 @@ h5{
 
 a{
   color:black;
+}
+
+.navbar-brand{
+  font-family: 'Special Elite', cursive;
+}
+
+#default-page{
+  font-family: 'Special Elite', cursive;
 }
