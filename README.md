@@ -33,4 +33,4 @@ You can give a brief listing of the technologies you've learned and applied here
 ## Acknowledgments
 
 * Our awesome instructor, Arron Linton
-* Our equally awesome TAs, Alex & Andy
+* Our equally awesome TAs, Alex, Alex, Jason & Andy
