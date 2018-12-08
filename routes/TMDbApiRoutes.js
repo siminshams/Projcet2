@@ -85,10 +85,10 @@ module.exports = function(app, passport) {
   });
 
   // add a movie to list
-  app.post("/api/list/add", function(req, res) {
+  app.post("/api/list/add/:movieId", function(req, res) {
     models.movie.create({
-      movieId: req.body.movieId,
-      userId: req.userId
+      movieId: req.params.movieId,
+      userId: req.user.id
     });
   });
 

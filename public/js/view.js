@@ -13,11 +13,19 @@ $(document).ready(function() {
 
   $(document).on("click", ".search", searchPartial);
   
+  $(document).on("click", ".add-movie", addMovie);
+
+  function addMovie(event) {
+    event.preventDefault();
+    var movieId = $(this).data("id");
+    $.ajax({
+      method: "POST",
+      url: "/api/list/add/" + movieId
+    });
+  }
+
   var lists = [];
-
-  
   getLists();
-
   
   function initializeRows() {
     $listContainer.empty();
