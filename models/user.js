@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes) { 
-  var User = sequelize.define('user', {    
+
+  var User = sequelize.define("User", {    
       username: {
           type: DataTypes.TEXT
       },
@@ -14,6 +15,13 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: false
       }      
   });
+
+  User.associate = function(models) {
+      User.hasMany(models.Movie, {
+          onDelete: "cascade"
+      });
+  };
+
   return User;
 
 }
