@@ -14,7 +14,7 @@ var TMDbUrl = function(query, additionalParameters) {
 
 module.exports = function(app, passport) {
 
-  // popular current movies
+  // home page and popular current movies
   app.get("/", function(req, res) {
 
     var url = TMDbUrl("discover/movie", "&page=1&sort_by=popularity.desc");
@@ -40,17 +40,11 @@ module.exports = function(app, passport) {
 
     });
 
-      
-    // console.log('NEWS', getNews());
-
-  // Promise.all([getNews(), getPosters()]).then(function(results){
-  //   console.log("PROMISE RESULTS", results)
-      
-  //   })
   });
 
-  // search movies
+  // search page and movie news
   app.post("/api/search", function(req, res) {
+
     var url = TMDbUrl("search/movie", "&query=" + encodeURI(req.body.query));
     request(url, function(error, result, body) {
       if (error) { return console.log(error); }
@@ -65,14 +59,18 @@ module.exports = function(app, passport) {
             return console.log(error);
         }
         var email = req.user ? req.user.email : "";
+
         res.render("index", {
           searchResults: searchResults,
           newsResults: body.articles,
           authenticated: req.isAuthenticated(),
           email: email
         });
+
       });
+
     });
+    
   });
 
   // movie details
