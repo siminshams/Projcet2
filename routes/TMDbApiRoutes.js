@@ -3,6 +3,7 @@ require("dotenv").config();
 var env = require("dotenv").load();
 var keys = require("../config/keys");
 var news_api_key = keys.NEWS.api_key;
+var models = require("../models");
 
 // function simplifies URL for calls to The Movie Database API
 var TMDbUrl = function(query, additionalParameters) {
@@ -70,7 +71,7 @@ module.exports = function(app, passport) {
       });
 
     });
-    
+
   });
 
   // movie details
@@ -83,4 +84,20 @@ module.exports = function(app, passport) {
     });
   });
 
+  // add a movie to list
+  app.post("/api/list/add", function(req, res) {
+    models.movie.create({
+      movieId: req.body.movieId,
+      userId: req.userId
+    });
+  });
+
+  // get movie list
+  app.get("/api/list", function(req, res) {
+    models.movie.findAll({
+      include: [models.user]
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
 }
