@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
 
-  var Movie = sequelize.define("Movie", {
+  var Movie = sequelize.define("movie", {
     movieId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Movie.associate = function(models) {
-    Movie.belongsTo(models.User, {
+    Movie.belongsTo(models.user, {
       foreignKey: {
         allowNull: false
       }
