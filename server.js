@@ -38,7 +38,6 @@ app.set("view engine", "handlebars");
 require("./routes/listApiRoutes.js")(app);
 require("./routes/passportApiRoutes.js")(app, passport);
 require("./routes/TMDbApiRoutes.js")(app, passport);
-// require("./routes/newsApiRoutes.js")(app);
 require("./config/passport.js")(passport, models.user);
 require("./routes/htmlRoutes.js")(app);
 
