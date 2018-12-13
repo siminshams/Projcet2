@@ -15,6 +15,12 @@ var TMDbUrl = function(query, additionalParameters) {
 
 module.exports = function(app, passport) {
 
+  function isLoggedIn(req, res, next) { 
+    if (req.isAuthenticated())     
+      return next();         
+    res.redirect("/signin"); 
+  }
+
   // home page and popular current movies
   app.get("/", function(req, res) {
 
@@ -44,60 +50,69 @@ module.exports = function(app, passport) {
   });
 
   // search page and movie news
-  app.post("/api/search", function(req, res) {
-
+  app.post("/search", function(req, res) {
+    
     var url = TMDbUrl("search/movie", "&query=" + encodeURI(req.body.query));
+
     request(url, function(error, result, body) {
+
       if (error) { return console.log(error); }
       var response = JSON.parse(body);
       var searchResults = response.results;
+      searchResults.forEach(function(item) {
+        item.release_date = item.release_date ? item.release_date.substring(0, 4) : "unknown";
+      });
 
       // REQUEST CALL FOR NEWS API
       var newsurl = "https://newsapi.org/v2/everything?q=movie&from=2018&to=2018&sortBy=relevancy&language=en&apiKey=" + news_api_key;
-
       request(newsurl, {json:true},function (error, response, body) {
         if (error) {
             return console.log(error);
         }
         var email = req.user ? req.user.email : "";
-
         res.render("index", {
           searchResults: searchResults,
           newsResults: body.articles,
           authenticated: req.isAuthenticated(),
           email: email
         });
-
       });
 
     });
 
   });
 
-  // movie details
-  app.get("/api/movie/:movie", function(req, res) {
-    var url = TMDbUrl("movie/" + req.params.movie, "");
-    request(url, function(error, result, body) {
-      if (error) { return console.log(error); }
-      var response = JSON.parse(body);
-      res.json(response);
+  // display movie list
+  app.get("/list", isLoggedIn, function(req, res) {
+    models.movie.findAll({
+      include: [models.user],
+      where: {
+        UserId: req.user.id
+      },
+      order: [
+        ['title', 'ASC']
+      ]
+    }).then(function(data) {
+      var email = req.user ? req.user.email : "";
+      console.log(data);
+      res.render("index", {
+        listResults: data,
+        authenticated: req.isAuthenticated(),
+        email: email
+      });
     });
   });
 
   // add a movie to list
-  app.post("/api/list/add/:movieId", function(req, res) {
+  app.post("/api/list/add/", isLoggedIn, function(req, res) {
     models.movie.create({
-      movieId: req.params.movieId,
+      movieId: req.body.movieId,
+      title: req.body.title,
+      year: req.body.year,
+      overview: req.body.overview,
+      poster: req.body.poster,
       userId: req.user.id
     });
   });
 
-  // get movie list
-  app.get("/api/list", function(req, res) {
-    models.movie.findAll({
-      include: [models.user]
-    }).then(function(dbPost) {
-      res.json(dbPost);
-    });
-  });
 }

@@ -23,6 +23,14 @@ h2 {
   margin: 2px;
 }
 
+.add-movie {
+  margin: 15px 38px 0 38px;
+}
+
+.mark-watched {
+  margin: 15px 0 0 0;
+}
+
 .list-list {
   margin: 0 auto;
   margin-top: 75px;
@@ -52,8 +60,12 @@ input.new-item:focus {
   text-align: center;
 }
 
-img{
+.carouselPoster {
   margin: 27px;
+}
+
+.thumbPoster {
+  margin: 0 18px;
 }
 
 .scroll {
@@ -76,13 +88,12 @@ img{
 }
 .innerCard2{
   border: 3px solid #ffe866;
-  background:#ffe866;
+  background: #ffe866;
   color: black;
   border-radius: 5px;
-  padding:auto;
-  margin: auto;
-  text-align: center;
+  padding: 30px;
   font-family: 'Special Elite', cursive;
+  text-align: left;
 }
 
 h5{
@@ -91,6 +102,11 @@ h5{
 
 a{
   color:black;
+}
+
+.year {
+  font-weight: bold;
+  margin-right: 6px;
 }
 
 .navbar-brand{

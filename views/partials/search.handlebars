@@ -1,14 +1,29 @@
-
 {{#each searchResults}}
-<div class="innerCard2">
-
-        <img class="searchPoster" align="left" src="https://image.tmdb.org/t/p/w92/{{poster_path}}">
-        <p>
+  <div class="innerCard2">
+    <div class="row">
+      <div class="col-auto">
+        <div class="row">
+          {{#if poster_path}}
+            <img class="thumbPoster" align="left" src="https://image.tmdb.org/t/p/w92{{poster_path}}">
+          {{/if}}
+        </div>
+        <div class="row">
+          <button 
+            class="add-movie" 
+            data-id="{{id}}" 
+            data-title="{{title}}" 
+            data-year="{{release_date}}" 
+            data-overview="{{overview}}" 
+            data-poster="{{poster_path}}">
+            ADD
+          </button>
+        </div>
+      </div>
+      <div class="col">
         <h3>{{title}}</h3>
-        <p>Release Date: {{release_date}}</p>
-        <p>Description: {{overview}}</p>
-        <button action="movie" class="select-movie" data-id="{{id}}">SELECT</button>
-        <button class="add-movie" data-id="{{id}}">ADD</button>
-</p></div>
-<br>
+        <p><span class="year">({{release_date}})</span>{{overview}}</p>
+      </div>
+    </div>
+  </div>
+  <br>
 {{/each}}
