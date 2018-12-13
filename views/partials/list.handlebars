@@ -1,22 +1,25 @@
-
-    <div class="card-body text-center">
-      <ul class="list-group list-list">
-        <li class="list-group-item new-item">
-          <form id="list-form">
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <input class="new-item form-control" placeholder="Add a movie" type="text" />
-                </div>
-                <div class="col">
-                  <button type="submit" class="btn-sm btn-success">Add Movie</button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </li>
-        <span class="list-container">
-        </span>
-      </ul>   
+{{#each listResults}}
+  <div class="innerCard2">
+    <div class="row">
+      <div class="col-auto">
+        <div class="row">
+          {{#if poster}}
+            <img class="thumbPoster" align="left" src="https://image.tmdb.org/t/p/w92{{poster}}">
+          {{/if}}
+        </div>
+        <div class="row">
+          <button 
+            class="mark-watched" 
+            data-id="{{id}}">
+            MARK WATCHED
+          </button>
+        </div>
+      </div>
+      <div class="col">
+        <h3>{{title}}</h3>
+        <p><span class="year">({{year}})</span>{{overview}}</p>
+      </div>
     </div>
-  
+  </div>
+  <br>
+{{/each}}
