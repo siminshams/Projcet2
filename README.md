@@ -11,11 +11,12 @@ Home page of app
 
 ## Technologies used
 You can give a brief listing of the technologies you've learned and applied here
-- node.js
+- Node.js
 - Express
 - Handblebars
-- mySQL
+- MySQL
 - Sequelize
+- Passport
 
 ## Built With
 

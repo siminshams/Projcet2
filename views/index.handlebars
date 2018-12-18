@@ -44,9 +44,27 @@
         {{/if}}
       </div>
     </div>
+{{#if searchResults}}
+<div class="col-sm-3">
+  <div class="card bg-secondary">
+    <div class="card news scroll2 bg-danger">
+      <div class="card-body text-center">  
+        <div class="innerCard">
+          <h4>Movie News</h4>
+        <ul>
+          {{#each newsResults}}
+            {{> news}}
+          {{/each}}
+        </ul> 
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+{{else}}
+  {{#unless listResults}}
   <div class="col-sm-3">
     <div class="card bg-secondary">
-      {{#unless searchResults}}
         <div id="demo" class="carousel slide" data-ride="carousel">
 
           <!-- The slideshow -->
@@ -70,29 +88,12 @@
             <span class="carousel-control-next-icon"></span>
           </a>
 
-        </div>
-      </div>
-
-      {{else}}
-
-      <div class="card news scroll2 bg-danger">
-        <div class="card-body text-center">  
-          {{!-- <p class="card-text">Movie News</p> --}}
-          <div class="innerCard">
-            <h4>Movie News</h4>
-          <ul>
-            {{#each newsResults}}
-              {{> news}}
-            {{/each}}
-          </ul> 
           </div>
         </div>
-      </div> 
-
-      {{/unless}}
-
     </div>
   </div>
+  {{/unless}}
+{{/if}}
 </div>
 
 <div>

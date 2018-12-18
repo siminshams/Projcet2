@@ -65,7 +65,7 @@ input.new-item:focus {
 }
 
 .thumbPoster {
-  margin: 0 18px;
+  margin: 0 28px;
 }
 
 .scroll {
@@ -110,6 +110,10 @@ a{
 }
 
 .navbar-brand{
+  font-family: 'Special Elite', cursive;
+}
+
+.watched {
   font-family: 'Special Elite', cursive;
 }
 
