@@ -26,9 +26,7 @@ module.exports = function(app, passport) {
 
     var url = TMDbUrl("discover/movie", "&page=1&sort_by=popularity.desc");
     request(url, function(error, result, body) {
-      if (error) { 
-        return console.log(error); 
-      }
+      if (error) { return console.log(error); }
       var email = req.user ? req.user.email : "";
       var response = JSON.parse(body);
       var popularMovies = response.results;
@@ -59,16 +57,16 @@ module.exports = function(app, passport) {
       if (error) { return console.log(error); }
       var response = JSON.parse(body);
       var searchResults = response.results;
-      searchResults.forEach(function(item) {
-        item.release_date = item.release_date ? item.release_date.substring(0, 4) : "unknown";
-      });
+      if (searchResults) {
+        searchResults.forEach(function(item) {
+          item.release_date = item.release_date ? item.release_date.substring(0, 4) : "unknown";
+        });
+      }
 
       // REQUEST CALL FOR NEWS API
       var newsurl = "https://newsapi.org/v2/everything?q=movie&from=2018&to=2018&sortBy=relevancy&language=en&apiKey=" + news_api_key;
       request(newsurl, {json:true},function (error, response, body) {
-        if (error) {
-            return console.log(error);
-        }
+        if (error) { return console.log(error); }
         var email = req.user ? req.user.email : "";
         res.render("index", {
           searchResults: searchResults,
@@ -94,7 +92,6 @@ module.exports = function(app, passport) {
       ]
     }).then(function(data) {
       var email = req.user ? req.user.email : "";
-      console.log(data);
       res.render("index", {
         listResults: data,
         authenticated: req.isAuthenticated(),
@@ -112,6 +109,44 @@ module.exports = function(app, passport) {
       overview: req.body.overview,
       poster: req.body.poster,
       userId: req.user.id
+    }).then(function() {
+      res.status(200);
+    });
+  });
+
+  // mark a movie watched
+  app.put("/api/list/watched/", isLoggedIn, function(req, res) {
+    var filter = {
+      where: {
+        userId: req.user.id,
+        movieId: req.body.movieId
+      },
+      include: [models.user]
+    };
+    models.movie.findOne(filter).then(function(movie) {
+      if (movie) {
+        movie.update({ watched: true });
+      }
+    }).then(function() {
+      res.status(200);
+    });
+  });
+
+  // mark a movie unwatched
+  app.put("/api/list/unwatched/", isLoggedIn, function(req, res) {
+    var filter = {
+      where: {
+        userId: req.user.id,
+        movieId: req.body.movieId
+      },
+      include: [models.user]
+    };
+    models.movie.findOne(filter).then(function(movie) {
+      if (movie) {
+        movie.update({ watched: false });
+      }
+    }).then(function() {
+      res.status(200);
     });
   });
 

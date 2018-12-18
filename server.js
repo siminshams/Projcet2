@@ -35,7 +35,6 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/listApiRoutes.js")(app);
 require("./routes/passportApiRoutes.js")(app, passport);
 require("./routes/TMDbApiRoutes.js")(app, passport);
 require("./config/passport.js")(passport, models.user);
